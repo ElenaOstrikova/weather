@@ -1,0 +1,41 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
+
+#input {
+  font-size: 30px;
+}
+
+#city-name {
+  margin: 10px;
+}
+
+#input-button {
+  font-size: 30px;
+}
+
+.data-results {
+  font-size: large;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.result-name {
+  font-weight: bold;
+}
+
+#error-container {
+  display: flex;
+  justify-content: center;
+}
+
+.error-message {
+  color: red;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <script type="text/javascript" src="handlebars.min-latest.js"></script>
+</head>
+<body>
+
+    <div class="input-container">
+        <h1 id="city-name">City name</h1>
+        <form id="input-form">
+            <input id="input" type="text">
+            <input id="input-button" type="submit" value="Show">
+        </form>
+    </div>
+
+    <div id="data-container"></div>
+    <script id="data-template" type="text/x-handlebars-template">
+        <div class="data-results">
+            {{#each parameters}}
+            <div class="result">
+                <div class="result-name">{{name}}</div>
+                <img class="result-icon" src={{icon}}>
+                <div class="result-value">{{value}} {{{units}}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+
+    <div id="error-container"></div>
+    <script id="error-template" type="text/x-handlebars-template">
+        <h1 class="error-message">Error: {{message}}</h1>
+    </script>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
