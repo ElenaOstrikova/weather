@@ -19,6 +19,7 @@
     <div id="data-container"></div>
     <script id="data-template" type="text/x-handlebars-template">
         <div class="data-results">
+            {{#if parameters}}
             {{#each parameters}}
             <div class="result">
                 <div class="result-name">{{name}}</div>
@@ -26,12 +27,10 @@
                 <div class="result-value">{{value}} {{{units}}}</div>
             </div>
             {{/each}}
+            {{else}}
+                <h1 class="error-message">Error: {{message}}</h1>
+            {{/if }}
         </div>
-    </script>
-
-    <div id="error-container"></div>
-    <script id="error-template" type="text/x-handlebars-template">
-        <h1 class="error-message">Error: {{message}}</h1>
     </script>
 
     <script type="text/javascript" src="script.js"></script>

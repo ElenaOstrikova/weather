@@ -7,3 +7,7 @@
 
 ## Запуск проекта:
 Открыть файл index.html в браузере. Необходимо интернет соединение для получения информации [OpenWatherMap](https://openweathermap.org/api)
+
+После изменения стилей необходимо в консоли запустить комманду
+
+sass <input_file>.scss <output_file>.css

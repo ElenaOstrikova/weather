@@ -1,7 +1,7 @@
 
 window.onload = function() {
-    let input_form = document.getElementById("input-form");
-    input_form.addEventListener("submit", onSubmit)
+    let inputForm = document.getElementById("input-form");
+    inputForm.addEventListener("submit", onSubmit)
 };
 
 function onSubmit(event){
@@ -9,23 +9,16 @@ function onSubmit(event){
 
     let request = new XMLHttpRequest();
 
-    let city_name = event.currentTarget[0].value;
-
-    let request_param = "https://api.openweathermap.org/data/2.5/weather" +
-        "?q=" + city_name +
-        "&appid=f59d11cd1cbf21b585ceaf6740b123a4" +
-        "&units=metric" +
-        "&lang=en";
-    request.open("GET", request_param);
-    request.responseType = "json";
+    openRequest(event.currentTarget[0].value, request);
 
     request.onload = function () {
         if(request.status == 200){
-            let data = getData(request.response);
-            showWeather(data);
+            let data = transformData(request.response);
+            showAnswer(data, request.status);
         }
         else {
-            showError(request.response.message);
+            let data = { message : request.response.message };
+            showAnswer(data, request.status);
         }
 
     };
@@ -33,8 +26,19 @@ function onSubmit(event){
     request.send();
 }
 
-function getData(response){
-    const size = 128;
+function openRequest(cityName, request){
+
+    let requestParam = "https://api.openweathermap.org/data/2.5/weather" +
+        "?q=" + cityName +
+        "&appid=f59d11cd1cbf21b585ceaf6740b123a4" +
+        "&units=metric" +
+        "&lang=en";
+    request.open("GET", requestParam);
+    request.responseType = "json";
+
+}
+
+function transformData(response){
 
     let data =
         {
@@ -76,24 +80,13 @@ function getData(response){
     return data;
 }
 
-function showWeather(data) {
+function showAnswer(data, status) {
     let source = document.getElementById("data-template").innerHTML;
     let template = Handlebars.compile(source);
-    let html = template(data);
 
-    document.getElementById("error-container").innerHTML = "";
+    let html = template(data);
     document.getElementById("data-container").innerHTML = html;
 }
 
-function showError(message) {
-    let source = document.getElementById("error-template").innerHTML;
-    let template = Handlebars.compile(source);
-
-    let context = { message : message };
-    let html = template(context);
-
-    document.getElementById("error-container").innerHTML = html;
-    document.getElementById("data-container").innerHTML = "";
-}
 
 

@@ -31,11 +31,7 @@ $input-font-size : 30px;
   font-weight: bold;
 }
 
-#error-container{
-  display: flex;
-  justify-content: center;
-}
-
-.error-message {
+.error-message{
+  grid-column: 3;
   color: red;
 }

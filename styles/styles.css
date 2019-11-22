@@ -29,12 +29,8 @@
   font-weight: bold;
 }
 
-#error-container {
-  display: flex;
-  justify-content: center;
-}
-
 .error-message {
+  grid-column: 3;
   color: red;
 }
 
